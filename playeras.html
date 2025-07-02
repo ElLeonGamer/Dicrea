@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+
+
+    <title>Dicrea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+
+
+  </head>
+
+  <body>
+
+
+    <a href="./index.html"><img src = "./assets/logo.png" id="logo"></a>
+
+    <div class="fade-in">
+
+    <h1 class = "description">Playeras</h1>
+
+      <div class = "prodTypes">
+        <button class="button-7" role="button" autofocus>Playeras</button>
+        <button class="button-7" role="button">Gorras</button>
+        <button class="button-7" role="button">Chumpas</button>
+        <button class="button-7" role="button">Chalecos</button>
+      </div>
+
+    </div>
+
+    <div class="fade-in">
+
+      <div class = "stockbox">
+        <img src = "./assets/mangaL.webp" class = "stock">
+        <h1 class = "description">Playeras Manga Larga</h1>
+      </div>
+
+     </div>
+
+     <div class="fade-in">
+      <div class = "stockbox">
+        <img src = "./assets/mangaC.png" class = "stock">
+        <h1 class = "description">Playeras Manga Corta</h1>
+      </div>
+     </div>
+
+     <div class="fade-in">
+      <div class = "stockbox">
+        <img src = "./assets/ejecutivo.png" class = "stock">
+        <h1 class = "description">Uniformes ejecutivos</h1>
+      </div>
+     </div>
+
+
+  <a href="https://wa.me/+50244798946" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <img src="./assets/WhiteWhatsApp.png" alt="WhatsApp">
+  </a>
+
+  <a href="mailto:dicreagt@gmail.com" class="gmail-float" target="_blank" rel="noopener noreferrer">
+    <img src="./assets/WhiteEmail.png" alt="WhatsApp">
+  </a>
+
+
+<script>
+  const track = document.querySelector('.carousel-track');
+  const images = document.querySelectorAll('.carousel-img');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+
+  let index = 0;
+
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % images.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  });
+
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + images.length) % images.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  });
+</script>
+
+
+
+    <script>
+    const faders = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1 // porcentaje visible del elemento para activar
+    });
+
+    faders.forEach(el => observer.observe(el));
+  </script>
+
+
+  </body>
+
+
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+
+
+    <title>Dicrea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+
+
+  </head>
+
+  <body>
+
+    <div class="topbar">
+      <img src="./assets/logo.png" id="logo"/>
+      <div class="text-container">
+        <div class="nav">
+          <a class="linktxt" href="#">Inicio</a>
+          <a class="linktxt" href="#productos">Productos</a>
+          <a class="linktxt" href="#contacto">Contacto</a>
+        </div>
+      </div>
+    </div>
+
+  <div class="fade-in">
+
+    <div class="banner">
+      <img src="./assets/banner.jpg">
+    </div>
+
+  </div>
+
+    <div class="fade-in">
+
+      <div id="productos" class="description">
+          <h1>Explora los diferentes productos que tenemos para ti</h1>
+      </div>
+
+  <div class="product-grid">
+
+      <div class="product-card">
+        <img src="./assets/mangaL.webp" alt="Producto 1" />
+        <h3 class="prodTxt">Playera Manga larga</h3>
+      </div>
+
+      <div class="product-card">
+        <img src="./assets/mangaC.png" alt="Producto 2" />
+        <h3 class="prodTxt">Playera Manga corta</h3>
+      </div>
+
+      <div class="product-card">
+        <img src="./assets/polo.webp" alt="Producto 2" />
+        <h3 class="prodTxt">Camisa polo</h3>
+      </div>
+
+      <div class="product-card">
+        <img src="./assets/chumpa.webp" alt="Producto 2" />
+        <h3 class="prodTxt">Chumpas</h3>
+      </div>
+
+      <div class="product-card">
+        <img src="./assets/chaleco.webp" alt="Producto 2" />
+        <h3 class="prodTxt">Chalecos</h3>
+      </div>
+
+      <div class="product-card">
+        <img src="./assets/gabacha.webp" alt="Producto 2" />
+        <h3 class="prodTxt">gabachas</h3>
+      </div>
+
+      <div class="product-card">
+        <img src="./assets/columbia.webp" alt="Producto 2" />
+        <h3 class="prodTxt">Camisa Columbia</h3>
+      </div>
+
+      <div class="product-card">
+        <img src="./assets/blusaColumbia.webp" alt="Producto 2" />
+        <h3 class="prodTxt">Blusa Columbia</h3>
+      </div>
+
+      <div class="product-card">
+        <img src="./assets/ejecutivoSuit.webp" alt="Producto 2" />
+        <h3 class="prodTxt">Traje Ejecutivo</h3>
+      </div>
+
+      <div class="product-card">
+        <img src="./assets/uniformeChef.webp" alt="Producto 2" />
+        <h3 class="prodTxt">Uniforme de chef</h3>
+      </div>
+
+      <div class="product-card">
+        <img src="./assets/uniformeLimpieza.webp" alt="Producto 2" />
+        <h3 class="prodTxt">Uniforme de limpieza</h3>
+      </div>
+
+      <div class="product-card">
+        <img src="./assets/pantalonTrabajo.webp" alt="Producto 2" />
+        <h3 class="prodTxt">Pantalones de trabajo</h3>
+      </div>
+
+
+  </div>
+
+
+    <div class="fade-in">
+      <div class="contacto">
+
+        <div id="contacto" class="description">
+              <h1>Contactanos</h1>
+        </div>
+
+      <div id="contactanos" class="contactInfo">
+        <h2>¿Tienes preguntas?</h2>
+        <p>¡Contáctanos y te responderemos lo antes posible!</p>
+
+        <form action="mailto:dicreagt@gmail.com" method="POST" enctype="text/plain">
+          <input type="text" name="nombre" placeholder="Tu nombre" required>
+          <input type="email" name="email" placeholder="Tu correo" required>
+          <textarea name="mensaje" rows="4" placeholder="Escribe tu mensaje..." required></textarea>
+          <button type="submit">Enviar mensaje</button>
+        </form>
+      </div>
+
+
+      </div>
+  </div>
+
+  <a href="https://wa.me/+50244798946" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <img src="./assets/WhiteWhatsApp.png" alt="WhatsApp">
+  </a>
+
+  <a href="mailto:dicreagt@gmail.com" class="gmail-float" target="_blank" rel="noopener noreferrer">
+    <img src="./assets/WhiteEmail.png" alt="WhatsApp">
+  </a>
+
+
+<script>
+  const track = document.querySelector('.carousel-track');
+  const images = document.querySelectorAll('.carousel-img');
+  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.next');
+
+  let index = 0;
+
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % images.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  });
+
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + images.length) % images.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  });
+</script>
+
+
+
+    <script>
+    const faders = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1 // porcentaje visible del elemento para activar
+    });
+
+    faders.forEach(el => observer.observe(el));
+  </script>
+
+
+  </body>
+
+
+</html>
