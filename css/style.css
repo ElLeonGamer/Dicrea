@@ -410,7 +410,14 @@
   margin-bottom: 20px;
 }
 
-.modal-content button {
+.modal-content label{
+  font-family: 'Bebas Neue'; /* para el título grande */
+  color: black; /* opcional: azul como links */
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.modal-content button{
   background-color: #007BFF; /* azul */
   color: white;               /* letra blanca */
   border: none;               /* quitar borde */
@@ -428,28 +435,48 @@
 }
 
 
+.modal-content input{
+  width: 100px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 2px solid #ccc;
+  text-align: center;
+  color: #000;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+
 /* Botones de tallas */
 
 .size-selector {
-  margin: 5px 0;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* alinea todo a la izquierda */
 }
 
 .sizes {
   display: flex;
-  gap: 10px;
-  justify-content: center; /* centra los botones */
+  gap: 6px; /* reduce el espacio entre botones */
+  justify-content: flex-start; /* alinea los botones a la izquierda */
+  margin-top: 8px;
 }
 
 .size-btn {
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 10px 14px; /* reduce el tamaño para que se vean más compactos */
+  border-radius: 6px;
   border: 1px solid #333;
   background-color: white;
   color: black;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.2s;
+  font-size: 14px;
 }
+
 
 /* Hover solo para los no activos */
 .size-btn:not(.active):hover {
@@ -462,6 +489,16 @@
   border-color: black;
 }
 
+.guia-tallas {
+  position: absolute;
+  top: 40px;
+  right: 25px; /* ajusta según el tamaño del icono */
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
 
 /* Botón cerrar */
 .close {
