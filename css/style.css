@@ -410,6 +410,58 @@
   margin-bottom: 20px;
 }
 
+.modal-content button {
+  background-color: #007BFF; /* azul */
+  color: white;               /* letra blanca */
+  border: none;               /* quitar borde */
+  border-radius: 12px;        /* bordes redondeados */
+  padding: 12px 24px;         /* tamaño más grande */
+  font-size: 16px;            /* texto más grande */
+  cursor: pointer;            /* cambia el cursor al pasar */
+  transition: background 0.3s ease; /* efecto suave al hover */
+  display: block;             /* lo hace bloque para centrarlo */
+  margin: 20px auto 0 auto;   /* margen superior y centrado horizontal */
+}
+
+.modal-content button:hover {
+  background-color: #0056b3; /* azul más oscuro al pasar */
+}
+
+
+/* Botones de tallas */
+
+.size-selector {
+  margin: 5px 0;
+}
+
+.sizes {
+  display: flex;
+  gap: 10px;
+  justify-content: center; /* centra los botones */
+}
+
+.size-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+/* Hover solo para los no activos */
+.size-btn:not(.active):hover {
+  transform: scale(1.05);
+}
+
+.size-btn.active {
+  background-color: black;
+  color: white;
+  border-color: black;
+}
+
 
 /* Botón cerrar */
 .close {
@@ -428,9 +480,14 @@
 }
 
 .carousel-container img {
-  max-width: 100%;
-  border-radius: 12px;
+  max-width: 80%;    /* limita el ancho a 80% del modal */
+  max-height: 300px; /* limita la altura */
+  object-fit: contain; /* mantiene proporciones sin recortar */
+  border-radius: 8px;  /* opcional, bordes un poco redondeados */
+  display: block;
+  margin: 0 auto;     /* centra la imagen */
 }
+
 
 .carousel-container .prev,
 .carousel-container .next {

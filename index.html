@@ -88,18 +88,22 @@
     </div>
 
     <!-- Modal -->
+
     <div id="buyModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Producto</h2>
 
-        <label for="talla">Talla:</label>
-        <select id="talla">
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
+        <div class="size-selector">
+          <label>Talla:</label>
+          <div class="sizes">
+            <button class="size-btn active" data-value="S">S</button>
+            <button class="size-btn" data-value="M">M</button>
+            <button class="size-btn" data-value="L">L</button>
+            <button class="size-btn" data-value="XL">XL</button>
+          </div>
+        </div>
+
 
         <label for="cantidad">Cantidad:</label>
         <input type="number" id="cantidad" value="1" min="1" />
@@ -166,7 +170,7 @@
         const nextBtn = modal.querySelector(".next");
 
         const productImages = {
-          "Playera Manga larga": ["./assets/mangaL.webp", "./assets/mangaL2.webp"],
+          "Playera Manga larga": ["./assets/mangaL.webp", "./assets/mangaL2.webp","./assets/mangaL3.webp"],
           "Playera Manga corta": ["./assets/mangaC.png", "./assets/mangaC2.png"],
           "Camisa polo": ["./assets/polo.webp"],
           "Chumpas": ["./assets/chumpa.webp"],
@@ -228,6 +232,29 @@
           document.body.style.overflow = 'auto';
         };
       });
+
+      // Selección de tallas
+        const sizeButtons = document.querySelectorAll('.size-btn');
+        let selectedSize = 'S'; // valor por defecto
+
+        sizeButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            sizeButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedSize = btn.dataset.value;
+          });
+        });
+
+        // Modificar agregar al carrito
+        window.agregarAlCarrito = function() {
+          const cantidad = document.getElementById("cantidad").value;
+          const nombreProducto = document.querySelector("#buyModal h2").textContent;
+          alert(`Agregado: ${cantidad} unidad(es) - Talla ${selectedSize} - Producto: ${nombreProducto}`);
+          modal.style.display = "none";
+          document.body.style.overflow = 'auto';
+        };
+
+
     </script>
   </body>
 </html>
