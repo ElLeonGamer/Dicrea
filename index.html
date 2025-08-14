@@ -193,6 +193,9 @@
   let selectedSize = 'S';
   let currentImages = [];
   let currentIndex = 0;
+  let cartItems = []; // Array donde guardamos los productos
+
+
 
   // ----- ELEMENTOS DEL MODAL -----
   const modal = document.getElementById("buyModal");
@@ -273,13 +276,24 @@
   });
 
   // ----- AGREGAR AL CARRITO -----
+
   function agregarAlCarrito() {
     const cantidadInput = document.getElementById('cantidad');
     const cantidad = parseInt(cantidadInput.value) || 1;
+    const nombreProducto = modalTitle.textContent;
+    const precioProducto = parseFloat(modalPrice.textContent.replace("Q", "")) || 0;
 
-    // Sumar al contador
+    // Sumar al contador global
     cartCount += cantidad;
     document.getElementById('cart-count').innerText = cartCount;
+
+    // Guardar en el carrito
+    cartItems.push({
+      nombre: nombreProducto,
+      talla: selectedSize,
+      cantidad: cantidad,
+      precio: precioProducto
+    });
 
     // Cerrar modal
     modal.style.display = 'none';
@@ -288,11 +302,14 @@
     // Resetear cantidad
     cantidadInput.value = 1;
 
-    // Tomar precio para futuras operaciones
-    const price = parseFloat(modalPrice.textContent.replace('Q','')) || 0;
-
-    console.log(`Agregado: ${cantidad} unidad(es) - Talla ${selectedSize} - Producto: ${modalTitle.textContent} - Precio Unitario: Q${price}`);
+    console.log("Carrito actual:", cartItems);
+    console.log("Total: Q" + calcularTotal());
   }
+
+  function calcularTotal() {
+  return cartItems.reduce((total, item) => total + (item.precio * item.cantidad), 0);
+  }
+
 </script>
 
 
