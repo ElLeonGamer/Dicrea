@@ -19,10 +19,14 @@
           <a class="linktxt" href="#productos">Productos</a>
           <a class="linktxt" href="#contacto">Contacto</a>
 
-          <div class="carrito-container">
-          <img src="./assets/shoppingCart.webp" alt="Carrito de compras" class="carrito-icon">
+        <div class="carrito-container">
+          <img src="./assets/shoppingCart.webp"
+              alt="Carrito de compras"
+              class="carrito-icon"
+              id="cartButton">
           <span id="cart-count" class="cart-badge">0</span>
-          </div>
+        </div>
+
 
 
         </div>
@@ -35,6 +39,42 @@
         <img src="./assets/banner.jpg" alt="Banner">
       </div>
     </div>
+
+    <!-- MODAL DEL CARRITO -->
+<div id="cartModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeCart">&times;</span>
+    <h2>🛍️ Tu Carrito</h2>
+
+    <!-- LISTA DE PRODUCTOS -->
+    <div id="cartItems"></div>
+
+    <hr>
+
+    <!-- DATOS DE PAGO -->
+    <h3>🏦 Datos de cuenta</h3>
+    <p><strong>Banco:</strong> Banco Industrial</p>
+    <p><strong>CUENTA MONETARIA</strong></p>
+    <p><strong>No. Cuenta:</strong> 127-078768-0</p>
+    <p><strong>A nombre de:</strong> Dicrea Guatemala</p>
+
+    <hr>
+
+    <!-- FORMULARIO DE COMPROBANTE -->
+    <h3>📄 Realizar compra </h3>
+    <form id="paymentForm">
+      <label for="boleta">Número de boleta:</label>
+      <input type="text" id="boleta" name="boleta" required>
+
+      <label for="recibo">Subir comprobante (foto):</label>
+      <input type="file" id="recibo" name="recibo" accept="image/*" required>
+
+      <button type="submit" class="send-btn">Subir Orden</button>
+    </form>
+  </div>
+</div>
+
+
 
 <!-- Productos -->
 <div class="fade-in">
@@ -309,6 +349,112 @@
   function calcularTotal() {
   return cartItems.reduce((total, item) => total + (item.precio * item.cantidad), 0);
   }
+
+
+// Referencia al modal del carrito y su contenedor
+const cartModal = document.getElementById("cartModal");
+const cartBtn = document.getElementById("cartButton"); // tu icono del carrito
+const closeCart = document.getElementById("closeCart");
+const cartItemsContainer = document.getElementById("cartItems");
+
+// Función para renderizar el carrito
+function renderCart() {
+  cartItemsContainer.innerHTML = ""; // Limpiar antes
+  if(cartItems.length === 0){
+    cartItemsContainer.innerHTML = "<p>Tu carrito está vacío.</p>";
+    return;
+  }
+
+  cartItems.forEach(item => {
+    const p = document.createElement("p");
+    p.textContent = `${item.nombre} (Talla: ${item.talla}) x${item.cantidad} - Q${item.precio * item.cantidad}`;
+    cartItemsContainer.appendChild(p);
+  });
+
+  // Total
+  const total = cartItems.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+  const totalP = document.createElement("p");
+  totalP.style.fontWeight = "bold";
+  totalP.textContent = `Total: Q${total}`;
+  cartItemsContainer.appendChild(totalP);
+}
+
+// Abrir modal
+cartBtn.onclick = () => {
+  renderCart();
+  cartModal.style.display = "block";
+};
+
+// Cerrar modal
+closeCart.onclick = () => {
+  cartModal.style.display = "none";
+};
+window.onclick = (e) => {
+  if(e.target === cartModal) cartModal.style.display = "none";
+};
+
+
+
+// Formulario
+document.getElementById("paymentForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if(cartItems.length === 0){
+    alert("Tu carrito está vacío");
+    return;
+  }
+
+  // Obtener datos del formulario
+  const boleta = document.getElementById("boleta").value;
+  const recibo = document.getElementById("recibo").files[0]?.name || "No adjuntado";
+
+  // Generar un número de orden aleatorio
+  const numeroOrden = "ORD" + Math.floor(Math.random() * 1000000);
+
+  // Generar texto de productos
+  let productosTexto = "";
+  cartItems.forEach(item => {
+    productosTexto += `- ${item.nombre} (Talla: ${item.talla}) x${item.cantidad}\n`;
+  });
+
+  // Crear mensaje
+  const mensaje =
+`Numero de Orden: *${numeroOrden}*
+Productos comprados:
+${productosTexto}
+Numero de boleta: ${boleta}
+Comprobante: ${recibo}`;
+
+  // Codificar para URL
+  const mensajeURL = encodeURIComponent(mensaje);
+
+  // Abrir WhatsApp Web
+  window.open(`https://wa.me/50230329533?text=${mensajeURL}`, "_blank");
+
+  // Opcional: cerrar modal
+  cartModal.style.display = "none";
+  alert("Se abrirá WhatsApp Web para enviar tu pedido. Gracias por comprar con nosotros!");
+});
+
+
+  ///Copy to clipboard
+
+  function CopyToClip() {
+  // Get the text field
+  var copyText = document.getElementById("myInput");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+
+  // Alert the copied text
+  alert("Copied the text: " + copyText.value);
+}
+
+
 
 </script>
 
