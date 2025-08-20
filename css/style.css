@@ -748,6 +748,15 @@ body{
   transition: border 0.2s, box-shadow 0.2s;
 }
 
+.CopyIcon{
+
+  padding: 5px 5px;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 
 /* -------- OPTIMIZACIÓN PARA TELÉFONOS -------- */
 @media (max-width: 768px) {
